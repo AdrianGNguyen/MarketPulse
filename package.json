@@ -1,0 +1,20 @@
+{
+  "name": "marketpulse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tw:build": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch"
+  },
+  "author": "Adrian Nguyen",
+  "license": "ISC",
+  "devDependencies": {
+    "daisyui": "^4.11.1",
+    "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}
