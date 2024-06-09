@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+app.get('/home', (req, tes) => {
+    res.render('index');
+});
+
 app.get('/stock', (req, res) => {
     res.render('stock');
 });
