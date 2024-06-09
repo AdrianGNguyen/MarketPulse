@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="/css/output.css" rel="stylesheet">
+  <style>
+    .svg-white img {
+      filter: invert(1) brightness(2);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <%- include('partials/navbar') %>
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold underline mt-8 mb-4 text-center">
+    Finance & Business News
+    </h1>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <% news.forEach(article => { %>
+        <div class="relative w-96 bg-white shadow-lg rounded-lg overflow-hidden">
+          <figure><img src="<%= article.urlToImage %>" alt="<%= article.title %>" class="w-full h-48 object-cover"/></figure>
+          <div class="p-4 pb-16"> <!-- Add bottom padding to ensure space for the button -->
+            <h2 class="text-xl font-bold mb-2"><%= article.title %></h2>
+            <p class="text-gray-700 mb-4"><%= article.description %></p>
+          </div>
+          <div class="absolute bottom-4 right-4"> <!-- Position the button absolutely -->
+            <a href="<%= article.url %>" target="_blank" class="bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">Read more</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <div class="flex justify-center mt-8">
+      <% if (page > 1) { %>
+        <a href="/news?page=<%= page - 1 %>" class="btn btn-wide">Previous</a>
+      <% } %>
+      <% if (page * pageSize < totalResults) { %>
+        <a href="/news?page=<%= page + 1 %>" class="btn btn-wide">Next</a>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

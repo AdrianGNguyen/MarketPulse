@@ -1,0 +1,45 @@
+<div id="stock-banner" class="flex overflow-hidden space-x-4 justify-center"></div>
+<hr class="border-t-1 border-gray-300">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stockBanner = document.getElementById('stock-banner');
+    const stockSymbols = ['META','AAPL', 'GOOGL', 'MSFT','AMD','NVDA', 'TSLA', ]; // Replace with your desired stock symbols
+    const apiKey = 'b2e09718fd3345da97615a817b79b51a'; // Replace with your API key from Twelve Data
+
+    function fetchStockData(symbol) {
+      return fetch(`https://api.twelvedata.com/quote?symbol=${symbol}&apikey=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+          if (!data || !data.close) {
+            console.error(`Error fetching data for ${symbol}:`, data);
+            return;
+          }
+
+          const price = parseFloat(data.close).toFixed(2);
+          const change = parseFloat(data.change).toFixed(2);
+          const percentChange = parseFloat(data.percent_change).toFixed(2);
+          const isNegative = change < 0;
+
+          const stockItem = document.createElement('div');
+          stockItem.className = 'flex flex-row items-center mx-8 bg-white w-80'; // Adjusted width for consistency
+          stockItem.innerHTML = `
+            <div class="text-base font-semibold">${symbol}</div>
+            <div class="text-base font-bold">$${ price}</div>
+            <div class="text-xs ${isNegative ? 'text-red-500' : 'text-green-500'}">
+              ${percentChange}% ${isNegative ? '↓' : '↑'}
+            </div>
+          `;
+
+          stockBanner.appendChild(stockItem);
+        })
+        .catch(error => console.error(`Error fetching stock data for ${symbol}:`, error));
+    }
+
+    async function fetchAllStocks() {
+      const fetchPromises = stockSymbols.map(symbol => fetchStockData(symbol));
+      await Promise.all(fetchPromises);
+    }
+
+    fetchAllStocks();
+  });
+</script>
