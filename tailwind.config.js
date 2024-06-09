@@ -2,7 +2,11 @@
 module.exports = {
   content: [`./views/**/*.ejs`],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Montserrat', 'ui-sans-serif', 'system-ui'],
+      },
+    },
   },
   plugins: [
     require('daisyui'),

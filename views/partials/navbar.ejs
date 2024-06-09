@@ -1,5 +1,15 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .svg-white img {
+      filter: invert(1) brightness(2);
+      width: 50px;
+      height: 50px;
+    }
+    .custom-black a {
+      color: black !important;
+    }
+  </style>
 </head>
 <div class="navbar bg-black text-neutral-content">
   <div class="navbar-start">
@@ -8,26 +18,24 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a>Item 1</a></li>
-        <li>
-          <a>Parent</a>
-          <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a>Item 3</a></li>
+        <li class="custom-black"><a href="/">>Home</a></li>
+        <li class="custom-black"><a href="/news">News</a></li>
+        <li class="custom-black"><a>WatchList</a></li>
+        <li class="custom-black"><a>About</a></li>
       </ul>
     </div>
     <a class="btn btn-ghost text-3xl">
       MarketPulse
-      <i class="fa fa-solar-system text-white ml-2"></i>
+      <div class="svg-white">
+        <img src="/image/image1.svg" alt="Image Description" />
+      </div>
     </a>
+    
   </div>
-  <div class="navbar-center hidden lg:flex">
+  <div class="navbar-center hidden lg:flex font-bold">
     <ul class="menu menu-horizontal px-1">
       <li><a>Home</a></li>
-      <li><a>News</a></li>
+      <li><a href="/news">News</a></li>
       <li><a>WatchList</a></li>
       <li><a>About</a></li>
     </ul>
