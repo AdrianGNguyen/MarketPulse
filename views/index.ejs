@@ -7,21 +7,126 @@
   <link href="/css/output.css" rel="stylesheet">
   <style>
     .svg-white img {
-      filter: invert(1) brightness(2);
+      filter: brightness(2);
+      width: 50px;
+      height: 50px;
+    }
+    .custom-black a {
+      color: black !important;
     }
   </style>
 </head>
-<body>
-  <%- include('partials/navbar') %>
-  
-  <%- include('partials/stockbanner') %>
-  
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-  <div class="svg-white">
-    <img src="/image/image1.svg" alt="Image Description" />
+
+<body class="bg-white">
+  <div class="navbar text-black">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <button tabindex="0" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </button>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <li class="custom-black"><a href="/">Home</a></li>
+          <li class="custom-black"><a href="/news">News</a></li>
+          <li class="custom-black"><a href="/watchlist">WatchList</a></li>
+          <li class="custom-black"><a href="/about">About</a></li>
+        </ul>
+      </div>
+      <a class="btn btn-ghost text-3xl content-center bg-pink">
+        MarketPulse
+        <div class="svg-white">
+          <img src="/image/image1.svg" alt="Image Description" />
+        </div>
+      </a>
+    </div>
+    <div class="navbar-center hidden lg:flex font-bold">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/">Home</a></li>
+        <li><a href="/news">News</a></li>
+        <li><a href="/watchlist">WatchList</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+      <a class="btn text-lg">
+        <i class="fas fa-ellipsis-h"></i>
+      </a>
+    </div>
   </div>
-  <button class="btn btn-outline btn-secondary">Secondary</button>
+
+  <section class="relative w-full h-screen bg-cover bg-center" style="background-image: url('./image/1682023.jpg');">
+
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Stay Ahead in Finance</h1>
+      <p class="text-lg md:text-xl mb-6">Get the latest finance news, stock projections, and price alerts all in one place.</p>
+      <button id="exploreButton" class="bg-orange-700 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Explore Now</button>
+    </div>
+  </section>
+
+  <section id="services" class="container mx-auto py-36">
+    <h2 class="text-3xl font-bold text-center mb-8">Our Services</h2>
+    <div class="flex flex-wrap justify-center gap-8">
+      <!-- Business & Finance News Card -->
+      <div class="flex max-w-sm bg-white overflow-hidden mb-8">
+        <div class="w-1 bg-orange-700"></div> <!-- Vertical line -->
+        <div class="flex flex-col px-6 py-4">
+          <h3 class="text-xl font-bold mb-2">Business & Finance News</h3>
+          <p class="text-gray-700 text-base mb-4">Stay updated with the latest business and finance news from around the world.</p>
+          <a href="/news" class="mt-auto bg-orange-700 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Learn More</a>
+        </div>
+      </div>
+      <!-- Stock Projection Card -->
+      <div class="flex max-w-sm bg-white overflow-hidden mb-8">
+        <div class="w-1 bg-orange-700"></div> <!-- Vertical line -->
+        <div class="flex flex-col px-6 py-4">
+          <h3 class="text-xl font-bold mb-2">Stock Projection</h3>
+          <p class="text-gray-700 text-base mb-4">Get accurate stock projections to help you make informed investment decisions.</p>
+          <a href="/stock-projection" class="mt-auto bg-orange-700 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Learn More</a>
+        </div>
+      </div>
+      <!-- Stock Monitor Card -->
+      <div class="flex max-w-sm bg-white overflow-hidden mb-8">
+        <div class="w-1 bg-orange-700"></div> <!-- Vertical line -->
+        <div class="flex flex-col px-6 py-4">
+          <h3 class="text-xl font-bold mb-2">Stock Monitor</h3>
+          <p class="text-gray-700 text-base mb-4">Monitor your stock portfolio and receive real-time updates and alerts.</p>
+          <a href="/stock-monitor" class="mt-auto bg-orange-700 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other sections go here -->
+
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto flex justify-between">
+      <div class="space-y-4">
+        <a href="/" class="block hover:underline">Home</a>
+        <a href="/news" class="block hover:underline">News</a>
+        <a href="/stock-projector" class="block hover:underline">Stock Projector</a>
+        <a href="/stock-price-alarm" class="block hover:underline">Stock Price Alarm</a>
+        <a href="/about" class="block hover:underline">About</a>
+        <a href="/contact" class="block hover:underline">Contact</a>
+      </div>
+      <div class="space-y-4">
+        <p>Email: info@financehub.com</p>
+        <p>Phone: +1 234 567 890</p>
+        <p>Address: 123 Finance Street, NY</p>
+      </div>
+      <div class="space-x-4">
+        <a href="#"><img src="linkedin-icon.png" alt="LinkedIn" class="inline-block w-6 h-6"></a>
+        <a href="#"><img src="twitter-icon.png" alt="Twitter" class="inline-block w-6 h-6"></a>
+        <a href="#"><img src="facebook-icon.png" alt="Facebook" class="inline-block w-6 h-6"></a>
+      </div>
+      <div>
+        <input type="email" placeholder="Subscribe to our newsletter" class="p-2 rounded">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Subscribe</button>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('exploreButton').addEventListener('click', function() {
+      document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
