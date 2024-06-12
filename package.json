@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tw:build": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
-    "start": "node server.js"
+    "start": "pm2 start ecosystem.config.js --no-daemon"
   },
   "author": "Adrian Nguyen",
   "license": "ISC",
