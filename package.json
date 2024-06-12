@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tw:build": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch"
+    "tw:build": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
+    "build": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css && npm run build:server",
+    "build:server": "echo \"Building server...\"",
+    "start": "node server.js"
   },
   "author": "Adrian Nguyen",
   "license": "ISC",
