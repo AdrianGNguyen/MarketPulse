@@ -6,16 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tw:build": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
-    "start": "pm2 start ecosystem.config.js --no-daemon"
+    "start": "concurrently \"node server.js\" \"streamlit run ./python_app/main.py\""
   },
   "author": "Adrian Nguyen",
   "license": "ISC",
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.7",
     "daisyui": "^4.11.1",
     "tailwindcss": "^3.4.3"
   },
   "dependencies": {
     "axios": "^1.7.2",
+    "concurrently": "^8.2.2",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2"
