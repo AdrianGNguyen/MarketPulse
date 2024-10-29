@@ -3,9 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
+    <style>
+        table {
+            width: 80%; /* Adjust width as needed */
+            margin: 20px auto; /* Center the table */
+            border-collapse: collapse; /* Optional: collapse borders */
+        }
+        th, td {
+            border: 1px solid #ddd; /* Add border */
+            padding: 8px; /* Add padding */
+            text-align: left; /* Align text */
+        }
+        th {
+            background-color: #f2f2f2; /* Background color for headers */
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100">
+    
     <%- include('partials/navbar') %>
+    <%- include('partials/stockbanner') %>
+
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold underline mt-8 mb-4 text-center">
+            Buying Opportunity Calculators
+        </h1>
+        <p class="w-4/5 mx-auto text-lg text-left mb-4 ">
+            This web application serves as a Buying Opportunity Calculator for financial indicators related to stock investments. 
+            It presents users with a structured table where they can input various stock-related metrics, including:
+        </p>
+        <ul class="list-disc list-inside w-4/5 mx-auto text-lg mb-4 text-left">
+            <li class="font-bold pl-4">Current Stock Price</li>
+            <li class="font-bold pl-4">Relative Strength Index (RSI)</li>
+            <li class="font-bold pl-4">CBOE Volatility Index (^VIX)</li>
+            <li class="font-bold pl-4">Moving Average (50 days and 200 days)</li>
+            <li class="font-bold pl-4">Price-to-Earnings Ratio (P/E)</li>
+        </ul>
+        <p class="w-4/5 mx-auto text-lg text-left mb-4">
+            Users can enter numerical values for each of these indicators, which represent key factors in evaluating stock performance and market trends.
+        </p>
+        <p class="w-4/5 mx-auto text-lg text-left mb-4">
+            Once the user inputs their data, they can click the "Calculate Probability" button. Upon clicking, the application retrieves all the input values, calculates the total sum, and displays the result directly below the button.
+        </p>
+        <p class="w-4/5 mx-auto text-lg text-left mb-4">
+            The concept is to eventually expand this functionality by applying a custom formula to analyze the aggregated indicators. This formula will compute a probability value indicating the risk level of purchasing a stock. The output will help users make informed investment decisions: a higher calculated probability will suggest lower risk, while a lower value will indicate higher risk, guiding users towards more strategic buying opportunities.
+        </p>
+        <div class="text-center">
+            <table class="w-4/5 text-left border-collapse border border-gray-300">
+                <thead class="bg-gray-600">
+                    <tr>
+                        <th class="py-2 px-4 border border-gray-300">Indicators</th>
+                        <th class="py-2 px-4 border border-gray-300">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white">
+                        <td class="py-2 px-4 border border-gray-300">Current Stock Price</td>
+                        <td class="py-2 px-4 border border-gray-300"><input type="number" id="price" placeholder="Enter value"></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="py-2 px-4 border border-gray-300">Relative Strength Index (RSI)</td>
+                        <td class="py-2 px-4 border border-gray-300"><input type="number" class="value-input" placeholder="Enter value"></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="py-2 px-4 border border-gray-300">CBOE Volatility Index (^VIX)</td>
+                        <td class="py-2 px-4 border border-gray-300"><input type="number" class="value-input" placeholder="Enter value"></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="py-2 px-4 border border-gray-300">Moving Average 50 days (MA50)</td>
+                        <td class="py-2 px-4 border border-gray-300"><input type="number" id="ma50" placeholder="Enter value"></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="py-2 px-4 border border-gray-300">Moving Average 200 days (MA200)</td>
+                        <td class="py-2 px-4 border border-gray-300"><input type="number" id="ma200" placeholder="Enter value"></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="py-2 px-4 border border-gray-300">Price-to-Earnings Ratio (P/E)</td>
+                        <td class="py-2 px-4 border border-gray-300"><input type="number" class="value-input" placeholder="Enter value"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="calculateButton" class="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-500 rounded ">
+                Calculate Probability
+            </button>
+            <!-- Result Display Area -->
+            <div id="result" class="mt-4 text-lg font-bold"></div>
+
+
+            <p class="w-4/5 mx-auto text-lg font-bold text-left mb-4 mt-8">
+                Stock Price vs. MA50 and MA200:
+            </p>
+            <ul class="list-disc list-inside w-4/5 mx-auto text-lg mb-4 text-left">
+                <li class="pl-4">Stock Price Above MA50: This suggests a bullish sentiment in the short term, indicating that the stock is performing well compared to its recent average. It may suggest a buying opportunity.*</li>
+                <li class="pl-4">Stock Price Below MA50: This indicates bearish sentiment in the short term, suggesting the stock is underperforming relative to its recent average. It may signal a selling opportunity or caution.*</li>
+                <li class="pl-4">Stock Price Above MA200: This indicates a longer-term bullish trend, suggesting that the stock has been performing well over an extended period.*</li>
+                <li class="pl-4">Stock Price Below MA200: This suggests a longer-term bearish trend, indicating that the stock has not been performing well over the longer term.*</li>
+            </ul>
+            <p class="w-4/5 mx-auto text-lg font-bold text-left mb-4 ">
+                MA50 vs. MA200:
+            </p>
+            <ul class="list-disc list-inside w-4/5 mx-auto text-lg mb-4 text-left">
+                <li class="pl-4">MA50 Above MA200 (Golden Cross): This is a bullish signal, suggesting that the stock may be in an upward trend. It indicates that the recent price movements (over the last 50 days) are stronger than the longer-term price movements (over the last 200 days).*</li>
+                <li class="pl-4">MA50 Below MA200 (Death Cross): This is a bearish signal, indicating that the stock may be in a downward trend. It suggests that recent price movements are weaker than the longer-term trend.*</li>
+            </ul>
+        </div>
+        
+    </div>
+    <script>
+        document.getElementById('calculateButton').addEventListener('click', function() {
+            // Get all input fields
+            const inputs = document.querySelectorAll('.value-input');
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            const ma50 = parseFloat(document.getElementById('ma50').value) || 0;
+            const ma200 = parseFloat(document.getElementById('ma200').value) || 0; 
+
+            let total = 0;
+
+            // Loop through inputs and add values
+            inputs.forEach(input => {
+                const value = parseFloat(input.value) || 0; // Get the value or default to 0
+                total += value;
+            });
+
+            const diffMA50 = price - ma50;  // Price minus MA50
+            const diffMA200 = price - ma200;
+
+            let messageMA50 = diffMA50 >= 0 
+                ? `The stock price is higher by ${diffMA50} points compared to MA50.` 
+                : `The stock price is lower by ${Math.abs(diffMA50)} points compared to MA50.`;
+
+            let messageMA200 = diffMA200 >= 0 
+                ? `The stock price is higher by ${diffMA200} points compared to MA200.` 
+                : `The stock price is lower by ${Math.abs(diffMA200)} points compared to MA200.`;
+
+            // Display the total in the result div
+            document.getElementById('result').innerHTML = 
+                `<span class="relative group">
+                    Total: ${total} 
+                    <span class="text-blue-500 cursor-pointer"> *</span>
+                    <span class="absolute left-full transform -translate-x-1/2 -translate-y-full w-56 bg-gray-700 text-white text-xs rounded-lg py-2 px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                        A higher value indicates a greater risk, while a lower value suggests a more favorable buying opportunity.
+                    </span>
+                </span><br>
+                ${messageMA50} * (See explanation below)<br>
+                ${messageMA200} * (See explanation below)`;
+
+
+        });
+    </script>
 </body>
 </html>
