@@ -24,6 +24,10 @@ app.get('/stock', (req, res) => {
     res.render('stock');
 });
 
+app.get('/projector', (req, res) => {
+    res.render('projector');
+});
+
 app.get('/news', async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     try {

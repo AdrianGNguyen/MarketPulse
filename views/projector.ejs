@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
+    <title>Investment Growth Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<%- include('partials/navbar') %>
+<body class="font-montserrat bg-white">
+    <h1 class="text-3xl font-bold text-center mt-8 mb-4">
+        TFSA Calculator
+    </h1>
+    <div class="flex">
+        <!-- Form Section -->
+        <div class="w-1/2 p-16 pl-32 pr-32 flex flex-col justify-start">
+            <p class="mb-16">
+                The TFSA Calculator is a tool designed to help individuals plan and visualize their Tax-Free Savings Account (TFSA) growth over 10 years. 
+                This tool is useful for anyone looking to maximize the benefits of their TFSA by understanding how their savings will grow tax-free, 
+                and it can help with retirement planning, saving for major purchases, or simply growing wealth over time.
+            </p>
+            <form id="investment-form" class="space-y-4">
+                
+                <div>
+                    <label for="initial-deposit" class="block text-gray-700">Initial Deposit Amount:</label>
+                    <input type="number" id="initial-deposit" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div>
+                    <label for="monthly-amount" class="block text-gray-700">Monthly Contribution:</label>
+                    <input type="number" id="monthly-amount" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <div>
+                    <label for="annual-return" class="block text-gray-700">Annual Return (%):</label>
+                    <input type="number" id="annual-return" class="w-full p-2 border border-gray-300 rounded-md" required>
+                </div>
+
+                <button type="button" onclick="calculateGrowth()" class="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                    Calculate Growth
+                </button>
+            </form>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="w-1/2 p-8 flex flex-col justify-start items-center">
+            <canvas id="growthChart" width="600" height="400"></canvas>
+        </div>
+    </div>
+    <div class="bg-gray-100 pt-8">
+        <h1 class="text-3xl font-bold text-center  mb-4 0">
+            Recommended for you
+        </h1>
+
+        <div class="flex space-x-4 p-16">
+            <!-- Card 1 -->
+            <a href="https://www.investopedia.com/terms/t/tax-free-savings-account-tfsa.asp" class="block bg-white rounded-lg shadow-md p-8 w-1/3 cursor-pointer hover:shadow-lg transition-shadow duration-200">
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">TFSA 101: What is a TFSA?</h2>
+                    <p class="text-gray-700">Find out how TFSAs work and how they differ from RRSPs.</p>
+                </div>
+            </a>
+        
+            <!-- Card 2 -->
+            <a href="https://www.investopedia.com/terms/a/averagereturn.asp" class="block bg-white rounded-lg shadow-md p-8 w-1/3 cursor-pointer hover:shadow-lg transition-shadow duration-200">
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">What Is Average Return?</h2>
+                    <p class="text-gray-700">Average Return: Meaning, Calculations and Examples.</p>
+                </div>
+            </a>
+        
+            <!-- Card 3 -->
+            <a href="https://www.moneysense.ca/save/investing/best-online-brokers-in-canada/" class="block bg-white rounded-lg shadow-md p-8 w-1/3 cursor-pointer hover:shadow-lg transition-shadow duration-200">
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">Best online brokers in Canada for 2024</h2>
+                    <p class="text-gray-700">Here is the list of the 10 best online brokers in Canada for this year.</p>
+                </div>
+            </a>
+        
+    </div>
+
+    
+
+    <script>
+        // Initialize the chart variable
+        let chartInstance = null;
+    
+        // Function to initialize an empty chart on page load
+        function initializeChart() {
+            const ctx = document.getElementById("growthChart").getContext("2d");
+            chartInstance = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: [], // Empty labels
+                    datasets: [{
+                        label: "Balance Over Time",
+                        data: [], // Empty data
+                        borderColor: "rgba(75, 192, 192, 1)",
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Years'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Balance'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    
+        // Function to calculate growth and update the chart with actual data
+        function calculateGrowth() {
+            // Retrieve input values
+            const initialDeposit = parseFloat(document.getElementById("initial-deposit").value);
+            const monthlyContribution = parseFloat(document.getElementById("monthly-amount").value);
+            const annualReturnRate = parseFloat(document.getElementById("annual-return").value) / 100;
+    
+            // Check for valid input
+            if (isNaN(initialDeposit) || isNaN(monthlyContribution) || isNaN(annualReturnRate)) {
+                alert("Please enter valid numbers.");
+                return;
+            }
+    
+            // Calculate the effective monthly rate from the annual rate
+            const monthlyRate = Math.pow(1 + annualReturnRate, 1 / 12) - 1;
+    
+            // Initialize data for graphing
+            const labels = [];
+            const data = [];
+            let balance = initialDeposit;
+    
+            for (let month = 1; month <= 120; month++) { // 10 years = 120 months
+                balance += monthlyContribution;     // Add monthly contribution
+                balance += balance * monthlyRate;   // Apply monthly compounded rate
+    
+                // Only label every 12 months (i.e., every year)
+                if (month % 12 === 0) {
+                    const year = month / 12;
+                    labels.push("Year " + year); // Label as "Year 1", "Year 2", etc.
+                    data.push(balance.toFixed(2)); // Round to 2 decimal places
+                }
+            }
+    
+            // Update the chart with new data
+            chartInstance.data.labels = labels;
+            chartInstance.data.datasets[0].data = data;
+            chartInstance.update(); // Update the chart to reflect the new data
+        }
+    
+        // Load the empty chart when the page is loaded
+        window.onload = initializeChart;
+    </script>
+</body>
+<%- include('partials/footer') %>
+</html>

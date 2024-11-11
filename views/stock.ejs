@@ -21,7 +21,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 text-black">
     
     <%- include('partials/navbar') %>
     <%- include('partials/stockbanner') %>
@@ -50,7 +50,7 @@
         <p class="w-4/5 mx-auto text-lg text-left mb-4">
             The concept is to eventually expand this functionality by applying a custom formula to analyze the aggregated indicators. This formula will compute a probability value indicating the risk level of purchasing a stock. The output will help users make informed investment decisions: a higher calculated probability will suggest lower risk, while a lower value will indicate higher risk, guiding users towards more strategic buying opportunities.
         </p>
-        <div class="text-center">
+        <div class="text-center mb-64">
             <table class="w-4/5 text-left border-collapse border border-gray-300">
                 <thead class="bg-gray-600">
                     <tr>
@@ -154,4 +154,5 @@
         });
     </script>
 </body>
+<%- include('partials/footer') %>
 </html>
