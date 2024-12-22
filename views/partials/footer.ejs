@@ -3,37 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Full footer for larger screens -->
     <footer class="bg-black text-white py-8">
-        <div class="container mx-auto flex justify-between">
-          <div class="space-y-4">
-            <a href="/" class="block hover:underline">Home</a>
-            <a href="/news" class="block hover:underline">News</a>
-            <a href="/stock-projector" class="block hover:underline">Stock Projector</a>
-            <a href="/stock-price-alarm" class="block hover:underline">Stock Price Alarm</a>
-            <a href="/projector" class="block hover:underline">About</a>
-            <a href="/contact" class="block hover:underline">Contact</a>
-          </div>
-          <div class="space-y-4">
+        <div class="container mx-auto md:flex justify-between hidden">
+            <div class="">
+                <a class="font-bold flex items-center mr-2 text-3xl text-white">
+                    MarketPulse
+                </a>
+                <a href="/" class="block hover:underline">Home</a>
+                <a href="/news" class="block hover:underline">News</a>
+                <a href="/stock-projector" class="block hover:underline">Stock Projector</a>
+                <a href="/stock-price-alarm" class="block hover:underline">Stock Price Alarm</a>
+                <a href="/projector" class="block hover:underline">About</a>
+                <a href="/contact" class="block hover:underline">Contact</a>
+            </div>
+            <div class="">
+                <p>Email: info@marketpulse.com</p>
+                <p>Phone: +1 234 567 890</p>
+                <p>Address: 123 Finance Street, Ontario, Canada</p>
+            </div>
+            <div class="">
+                <a href="#"><img src="/image/linkedin-icon.png" alt="LinkedIn" class="inline-block w-6 h-6"></a>
+                <a href="#"><img src="/image/instagram-icon.png" alt="Instagram" class="inline-block w-6 h-6"></a>
+                <a href="#"><img src="/image/facebook-icon.png" alt="Facebook" class="inline-block w-6 h-6"></a>
+                <a href="#"><img src="/image/x-icon.png" alt="X" class="inline-block w-6 h-6 filter invert"></a>
+            </div>
+            <div>
+                <input type="email" placeholder="Send us feedback" class="p-2 rounded">
+                <button class="bg-orange-700 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Submit</button>
+            </div>
+        </div>
+    </footer>
+  
+  <!-- Simplified footer for smaller screens -->
+    <footer class="bg-black text-white py-8 md:hidden">
+        <div class="container mx-auto flex flex-col items-center ">
+            <a class="font-bold text-3xl content-center text-white pb-8">
+                MarketPulse
+            </a>
+        <div class="pb-8">
+            <a href="#"><img src="/image/linkedin-icon.png" alt="LinkedIn" class="inline-block w-6 h-6"></a>
+            <a href="#"><img src="/image/instagram-icon.png" alt="Instagram" class="inline-block w-6 h-6"></a>
+            <a href="#"><img src="/image/facebook-icon.png" alt="Facebook" class="inline-block w-6 h-6"></a>
+            <a href="#"><img src="/image/x-icon.png" alt="X" class="inline-block w-6 h-6 filter invert"></a>
+        </div>
+        <div class="text-center pb-8">
             <p>Email: info@marketpulse.com</p>
             <p>Phone: +1 234 567 890</p>
             <p>Address: 123 Finance Street, Ontario, Canada</p>
-          </div>
-          <div class="space-x-4">
-            <a href="#"><img src="/image/linkedin-icon.png" alt="LinkedIn" class="inline-block w-6 h-6"></a>
-            <a href="#"><img src="/image/instagram-icon.png" alt="Twitter" class="inline-block w-6 h-6"></a>
-            <a href="#"><img src="/image/facebook-icon.png" alt="Facebook" class="inline-block w-6 h-6"></a>
-            <a href="#">
-                <img src="/image/x-icon.png" alt="x" class="inline-block w-6 h-6 filter invert">
-            </a>
-          </div>
-          <div>
-            <input type="email" placeholder="Send us feedback" class="p-2 rounded">
-            <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-          </div>
         </div>
-      </footer>
+        <div>
+            <input type="email" placeholder="Send us feedback" class="p-2 rounded">
+            <button class="bg-orange-700 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded">Submit</button>
+        </div>
+        </div>
+    </footer>
 </body>
 </html>

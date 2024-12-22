@@ -13,71 +13,74 @@
     <h1 class="text-3xl font-bold text-center mt-8 mb-4">
         TFSA Calculator
     </h1>
-    <div class="flex">
+    <div class="grid sm:grid-cols-1 lg:grid-cols-2">
         <!-- Form Section -->
-        <div class="w-1/2 p-16 pl-32 pr-32 flex flex-col justify-start">
-            <p class="mb-16">
+        <div class="p-4 sm:p-16 lg:p-16 ">
+            <p class="mb-8 sm:mb-4">
                 The TFSA Calculator is a tool designed to help individuals plan and visualize their Tax-Free Savings Account (TFSA) growth over 10 years. 
                 This tool is useful for anyone looking to maximize the benefits of their TFSA by understanding how their savings will grow tax-free, 
                 and it can help with retirement planning, saving for major purchases, or simply growing wealth over time.
             </p>
             <form id="investment-form" class="space-y-4">
-                
                 <div>
                     <label for="initial-deposit" class="block text-gray-700">Initial Deposit Amount:</label>
                     <input type="number" id="initial-deposit" class="w-full p-2 border border-gray-300 rounded-md" required>
                 </div>
-
+        
                 <div>
                     <label for="monthly-amount" class="block text-gray-700">Monthly Contribution:</label>
                     <input type="number" id="monthly-amount" class="w-full p-2 border border-gray-300 rounded-md" required>
                 </div>
-
+        
                 <div>
                     <label for="annual-return" class="block text-gray-700">Annual Return (%):</label>
                     <input type="number" id="annual-return" class="w-full p-2 border border-gray-300 rounded-md" required>
                 </div>
-
+        
                 <button type="button" onclick="calculateGrowth()" class="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
                     Calculate Growth
                 </button>
             </form>
         </div>
-
+        
         <!-- Chart Section -->
-        <div class="w-1/2 p-8 flex flex-col justify-start items-center">
-            <canvas id="growthChart" width="600" height="400"></canvas>
+        <div class="p-4 sm:p-8 lg:p-16 flex justify-center">
+            <canvas id="growthChart" class="w-full sm:w-[500px] lg:w-[600px]" height="400"></canvas>
         </div>
     </div>
-    <div class="bg-gray-100 pt-8">
-        <h1 class="text-3xl font-bold text-center  mb-4 0">
+    <div class="bg-gray-100 pt-8 pb-16">
+        <h1 class="text-3xl font-bold text-center mb-4">
             Recommended for you
         </h1>
 
-        <div class="flex space-x-4 p-16">
+        <div class="grid gap-4 p-4 sm:grid-cols-1 lg:grid-cols-3">
             <!-- Card 1 -->
-            <a href="https://www.investopedia.com/terms/t/tax-free-savings-account-tfsa.asp" class="block bg-white rounded-lg shadow-md p-8 w-1/3 cursor-pointer hover:shadow-lg transition-shadow duration-200">
+            <a href="https://www.investopedia.com/terms/t/tax-free-savings-account-tfsa.asp" 
+               class="block bg-white rounded-lg shadow-md p-8 cursor-pointer hover:shadow-lg transition-shadow duration-200">
                 <div>
                     <h2 class="text-xl font-semibold mb-2">TFSA 101: What is a TFSA?</h2>
                     <p class="text-gray-700">Find out how TFSAs work and how they differ from RRSPs.</p>
                 </div>
             </a>
-        
+    
             <!-- Card 2 -->
-            <a href="https://www.investopedia.com/terms/a/averagereturn.asp" class="block bg-white rounded-lg shadow-md p-8 w-1/3 cursor-pointer hover:shadow-lg transition-shadow duration-200">
+            <a href="https://www.investopedia.com/terms/a/averagereturn.asp" 
+               class="block bg-white rounded-lg shadow-md p-8 cursor-pointer hover:shadow-lg transition-shadow duration-200">
                 <div>
                     <h2 class="text-xl font-semibold mb-2">What Is Average Return?</h2>
                     <p class="text-gray-700">Average Return: Meaning, Calculations and Examples.</p>
                 </div>
             </a>
-        
+    
             <!-- Card 3 -->
-            <a href="https://www.moneysense.ca/save/investing/best-online-brokers-in-canada/" class="block bg-white rounded-lg shadow-md p-8 w-1/3 cursor-pointer hover:shadow-lg transition-shadow duration-200">
+            <a href="https://www.moneysense.ca/save/investing/best-online-brokers-in-canada/" 
+               class="block bg-white rounded-lg shadow-md p-8 cursor-pointer hover:shadow-lg transition-shadow duration-200">
                 <div>
                     <h2 class="text-xl font-semibold mb-2">Best online brokers in Canada for 2024</h2>
                     <p class="text-gray-700">Here is the list of the 10 best online brokers in Canada for this year.</p>
                 </div>
             </a>
+        </div>
         
     </div>
 
